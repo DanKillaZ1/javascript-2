@@ -1,0 +1,23 @@
+
+var vendasMes1 = 1.100;
+var vendasMes2 = 2.350;
+var vendasMes3 = 6.000;
+var vendasMes4 = 3.500;
+var vendasMes5 = 5.000;
+var vendasMes6 = 5.100;
+var vendasMes7 = 1.100;
+var vendasMes8 = 2.359;
+var vendasMes9 = 5.600;
+var vendasMes10 = 1.000;
+var vendasMes11 = 7.500;
+var vendasMes12 = 4.250;
+
+var total = 0;
+var media = 0; 
+
+total = vendasMes1 + vendasMes2 + vendasMes3 + vendasMes4 + vendasMes5 + vendasMes6 + vendasMes7 + vendasMes8 + vendasMes9 + vendasMes10 + vendasMes11 + vendasMes12;
+
+media = total / 12;
+
+console.log("Calculo da media de vendas no mes");
+console.log("media:" + media);
