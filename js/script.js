@@ -42,8 +42,12 @@ function contagemRegressiva(numero){
 
 // formulario de envio de dados para calculo da media
 
+const formulario1 = document.getElementById('formulario-01')
 
-document.getElementById('formulario-01').addEventListener('submit', function( evento){
+if(formulario1)
+
+
+formulario1.document.getElementById('formulario-01').addEventListener('submit', function( evento){
 
     evento.preventDefault();
     evento.stopPropagation();
@@ -104,7 +108,11 @@ function validaCampoNumerico(elemento){
 
         event.preventDefault();
 
-        if(this.value != "" && this.value.match(/[0-9]*/) && this.value >= 0 && this.value <= 10){
+        let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value;
+
+        
+
+        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && this.value <= 10){
             document.querySelector('.mensagem').innerHTML = "",
             this.classList.remove('erro');
             this.parentNode.classList.remove('erro');
@@ -121,8 +129,62 @@ function validaCampoNumerico(elemento){
     });
 }
 
+function validaEmail (elemento){
+
+    elemento.addEventListener('focusout', function(event){
+
+        event.preventDefault();
+
+              
+        const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]?$/i
+        if(this.value.match(/@/) && this.value.match(/./)){
+            document.querySelector('.mensagem').innerHTML = "",
+            this.classList.remove('erro');
+            this.parentNode.classList.remove('erro');
+
+           
+        }else {
+            
+            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho";
+            this.classList.add('erro');
+            this.parentNode.classList.add('erro');
+            return false;
+        }
+
+    });
+}
+
+function validaUf (elemento){
+
+    elemento.addEventListener('focusout', function(event){
+
+        event.preventDefault();
+
+              
+         
+        if(this.value.match(/[ro|ac|am|rr|pq|ap|to|ma|pi|ce|rn|pb|pe|al|se|ba|mg|es|rj|sp|pr|sc|rs|ms|mt|go|df|]{2}/i)){
+            document.querySelector('.mensagem').innerHTML = "",
+            this.classList.remove('erro');
+            this.parentNode.classList.remove('erro');
+
+           
+        }else {
+            
+            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho";
+            this.classList.add('erro');
+            this.parentNode.classList.add('erro');
+            return false;
+        }
+
+    });
+}
+
+
+
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio');
 let camposNumericos = document.querySelectorAll('input.numero');
+let camposEmail = document.querySelectorAll('input.email');
+let camposUf = document.querySelectorAll('input.uf');
 
 
 
@@ -135,4 +197,11 @@ for ( let emFoco of camposNumericos){
     validaCampoNumerico(emFoco);
 
 }
+for ( let emFoco of camposEmail){
+    validaEmail(emFoco);
 
+}
+for ( let emFoco of camposUf){
+    validaUf(emFoco);
+
+}
